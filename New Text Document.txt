@@ -1,0 +1,208 @@
+ return effectiveDamage;#include <iostream>
+#include <stdlib.h>
+#include <Windows.h>
+using namespace std;
+
+int effectiveDamage = 0;
+float damage = 0;
+int defence = 0;
+
+// ----------------------------
+//  Global variables
+// ----------------------------
+string playwe;
+int   menuOption = 0;
+bool  programActive;
+float health, attack, defence, maxHealth;
+
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+// ----------------------------
+float applyDamage(float damage) {
+    float effectiveDamage = damage - defence;
+    if (effectiveDamage < 0) {
+        effectiveDamage = 0;
+    }
+    health -= effectiveDamage;
+ 
+
+
+//  Reduces incoming damage by the player's
+//  defence value, then subtracts the result
+//  from health. Neither effective damage nor
+//  health can fall below zero.
+// ----------------------------
+   
+
+// ----------------------------
+//  Task 2 -- healPlayer
+//  Adds the given amount to health.
+//  Health cannot exceed the maximum of 100.
+// ----------------------------
+float healPlayer(float amount) {
+    health += amount;
+   if (health>maxHealth){
+       health=maxHealth
+}
+   return health;
+// ----------------------------
+//  Task 3 -- levelUp
+//  Increases health by a flat 20 points and
+//  scales both attack and defence by 10%.
+// ----------------------------
+void levelUp() {
+    health += 20;
+    maxHealth += 20;
+
+    attack *= 1.10f;
+    defence *= 1.10f;
+}
+
+// ----------------------------
+//  Provided functions -- do not modify
+// ----------------------------vrvr
+
+// Loops until the user enters a valid menu option
+void checkUserOption() {
+    while (cin.fail() || menuOption > 4) {
+        SetConsoleTextAttribute(hConsole, 12); // red
+        cout << "Please select a valid option !!!" << endl;
+        SetConsoleTextAttribute(hConsole, 7);  // reset
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "\nSelect an option: ";
+        cin >> menuOption;
+    }
+}
+
+// Prints the player's current stats to the console
+void displayStats() {
+    cout << "\n--- Player Stats ---" << endl;
+    cout << "Health:  " << health << endl;
+    cout << "Attack:  " << attack << endl;
+    cout << "Defence: " << defence << endl;
+}
+
+// Flags the main loop to exit on the next iteration
+void endProgram() {
+    programActive = false;
+}
+
+// ----------------------------
+//  Task 4 -- menu
+//  Displays the option list, reads user input,
+//  validates it, then dispatches to the correct
+//  function. Output for each action is printed
+//  in green; the colour is reset afterwards.
+// ----------------------------
+void menu() {
+    cout << "\n\n----- PLAYER STAT TRACKER -----" << endl;
+    cout << "--------------------------------" << endl;
+    cout << "[1] - Apply damage" << endl;
+    cout << "[2] - Heal player" << endl;
+    cout << "[3] - Level up" << endl;
+    cout << "[4] - Display stats" << endl;
+    cout << "[0] - Exit" << endl;
+    cout << "\nSelect an option: ";
+    cin >> menuOption;
+    checkUserOption();
+
+    SetConsoleTextAttribute(hConsole, 10); // green
+
+    float inputValue;
+
+    switch (menuOption) {
+    case 1:
+        cout << "Enter damage amount: ";
+        cin >> inputValue;
+        {
+            
+        
+           
+
+            cout << "Damage blocked by defence: " << (inputValue - dealt) << endl;
+            cout << "Effective damage taken:    " << dealt << endl;
+            cout << "Health remaining:          " << health << endl;
+
+            // end the session automatically if the player has died
+            if (health <= 0.0f) {
+                SetConsoleTextAttribute(hConsole, 12); // red for death message
+                cout << "\nThe player has died. Game over." << endl;
+                SetConsoleTextAttribute(hConsole, 7);
+                endProgram();
+                return;
+            }
+        }
+        break;
+
+    case 2:
+        cout << "Enter heal amount: ";
+        cin >> inputValue;
+
+        // START OF YOUR CODE
+
+        // call healPlayer with the user's input value
+
+        // END OF YOUR CODE
+
+        cout << "Health after healing: " << health << endl;
+        break;
+
+    case 3:
+        // START OF YOUR CODE
+
+        // call levelUp to increase the player's stats
+
+        // END OF YOUR CODE
+        cout << "Level up! New stats:" << endl;
+        cout << "  Health:  " << health << endl;
+        cout << "  Attack:  " << attack << endl;
+        cout << "  Defence: " << defence << endl;
+        break;
+
+    case 4:
+        // START OF YOUR CODE
+
+        // call displayStats to print the player's current stats
+
+        // END OF YOUR CODE
+        break;
+
+    case 0:
+        // START OF YOUR CODE
+
+        // call endProgram to exit the main loop
+
+        // END OF YOUR CODE
+        break;
+
+    default:
+        cout << "Please select a valid option !!!" << endl;
+        break;
+    }
+
+    SetConsoleTextAttribute(hConsole, 7); // reset
+}
+
+// ----------------------------
+//  DO NOT MODIFY ANY CODE BELOW THIS LINE
+//  Entry point
+//  Initialises player stats and runs the menu
+//  loop until programActive becomes false.
+// ----------------------------
+int main() {
+    maxHealth = 100.0f;
+    health = 100.0f;
+    attack = 15.0f;
+    defence = 10.0f;
+    programActive = true;
+
+    do {
+        menu();
+    } while (programActive);
+
+    cout << "\nThanks for playing!" << endl;
+    system("PAUSE"); // pause before exit
+
+    return 0;
+}
