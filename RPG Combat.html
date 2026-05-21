@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Combat Phase Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        ul {
+            margin-left: 20px;
+        }
+        .task {
+            margin-bottom: 25px;
+        }
+        .note {
+            background: #f4f6f7;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-top: 20px;
+        }
+        .submission {
+            background: #eef9f1;
+            padding: 15px;
+            border-left: 4px solid #27ae60;
+            margin-top: 20px;
+        }
+    </style>
+</head><body><div class="container">
+<h1 style="text-align: justify;">Phase Test 2</h1>
+<p style="text-align: justify;">In this phase test, you will complete four functions inside a simple turn-based RPG combat program. The player fights a randomly selected enemy until one side's HP reaches zero. Enemy data is stored across three parallel arrays: one for names, one for HP values, and one for attack values. A single random index selects the same enemy across all three arrays.&nbsp;</p>
+<p style="text-align: justify;">A partial implementation is provided. You must complete the functions.</p>
+<p style="text-align: justify;">Look for comments <strong>"// START OF YOUR CODE"</strong> and <strong>"// END OF YOUR CODE"</strong>. These show you where to write the solution code. Do not add or change any code that is outside these comments.</p>
+<div class="note" style="text-align: justify;">
+<p>Download, extract and open the <strong>rpg_simulation</strong> project in Visual Studio.</p>
+</div>
+<div class="task" style="text-align: justify;">
+<h2>Task 1</h2>
+<p>Complete <code>selectEnemy()</code>. It receives three output pointer parameters: a <code>string*</code>, an <code>int*</code>, and an <code>int*</code>. The function must:</p>
+<ul>
+<li>Generate a random index in the range [0, ENEMY_COUNT] using <code>rand()</code> and the <code>sizeof</code> idiom or ENEMY_COUNT directly</li>
+<li>Use the index to read from each of the three parallel arrays</li>
+<li>Write the values into the output parameters by dereferencing each pointer</li>
+</ul>
+</div>
+<div class="task" style="text-align: justify;">
+<h2>Task 2</h2>
+<p>Complete <code>isDefeated()</code>. It receives a single <code>int*</code> pointing to an enemy's current HP. Return <code>true</code> if the value it points to is zero or below, false otherwise. You must dereference the pointer to read the value. Do not use a local copy passed by value.</p>
+</div>
+<div class="task" style="text-align: justify;">
+<h2>Task 3</h2>
+<p>Complete <code>applyDamage()</code>. It receives the enemy's name, a pointer to their current HP, the damage amount, and a <code>char*</code> buffer for logging. The function must:</p>
+<ul>
+<li>Subtract damage from the value pointed to by <code>hpPtr</code></li>
+<li>Ensure the HP cannot fall below zero</li>
+</ul>
+<p>Example: <code>Orc takes 7 damage. HP remaining: 43</code> <code>logBuffer</code> is declared in <code>playEncounter()</code> and passed in. Do not declare a new array inside this function.</p>
+</div>
+<h2>Task 4</h2>
+<p>Complete <code>main()</code>. Call <code>playEncounter()</code> to run one combat encounter with a random enemy.</p>
+</div>
+<div class="note" style="text-align: justify;">
+<h2>Important Notes</h2>
+<ul>
+<li>Your submission must be a single <code>.cpp</code> file (i.e. <code>main.cpp</code>). Do not split into header/source files.</li>
+<li>Partial marks are available. A function that compiles and partially works will receive more credit than one left blank.</li>
+<li>Include more code comments to clearly demonstrate your understanding of the purpose, functionality, and logic behind each line of code</li>
+</ul>
+</div>
+<div class="submission">
+<h2 style="text-align: justify;">Submission</h2>
+<ol>
+<li style="text-align: justify;">One file containing C++ source code (i.e. <code>main.cpp</code>)</li>
+</ol>
+</div></body></html>
